@@ -1,0 +1,21 @@
+Main Functionalities:
+1. Savings Goal: Set a specific savings target for the user, including a target amount and a target date.
+2. Savings Progress: Track how much money the user has saved towards their goal.
+3. Savings Goal Status: Update and return the status of the goal (achieved or not achieved).
+4. Savings Goal Notification: Notify the user if the goal is approaching and the target savings have not been met.
+
+Key Variables:
+1. User ID: Unique identifier for each user.
+2. Target Amount: The amount of money the user wants to save.
+3. Target Date: The date by which the user wants to achieve their savings goal.
+4. Savings Goal: The savings goal object containing the target amount, target date, and amount saved.
+5. Amount Saved: The current amount of money the user has saved toward their goal.
+
+Input and Output Requirements:
+• Create: User creates a new savings goal (target amount and target date).
+• Store: The system stores the savings goal information.
+• Return: The system returns information about the current savings goal.
+• Update: The user updates the savings progress.
+• Retrieve: The system retrieves the users current savings progress and goal details.
+• Compose: The system composes the notification to alert the user.
+• Send: The system sends a notification to the user if the goal is approaching.

@@ -1,0 +1,76 @@
+# Main functionalities of the SavingsGoal system:
+    • Savings Goal
+    • Savings Progress
+    • Savings Goal Status 
+    • Savings Goal Notification 
+
+# Data Structure for SavingsGoal system
+SavingsGoal:
+    Attributes:
+        user_id: Integer
+        target_amount: Float
+        target_date: Date
+        amount_saved: Float
+        goal_status: String  # "In Progress", "Goal Met", "Goal Not Met"
+
+# Create a new savings goal
+FUNCTION NewSavingsGoal(user_id, target_amount, target_date):
+    user_id = user_id
+    target_amount = target_amount
+    target_date = target_date
+    amount_saved: 0.0
+    goal_status = "In Progress"
+    Store NewSavingsGoal in the database.
+END FUNCTION
+
+# Calculate progress to Savings Goal
+FUNCTION SavingsProgress(amount_saved_new):
+   amount_saved = amount_saved + amount_saved_new
+        IF amount_saved >= target_amount:
+            goal_status = "Goal Met"
+        ELSE IF the current date > target_date and amount_saved < target_amount:
+            goal_status = "Goal Not Met"
+        Update SavingsProgress in the database
+        END IF
+END FUNCTION
+
+# Return current status of SavingsGoal
+FUNCTION SavingsStatus(goal_status):
+    return goal_status
+END FUNCTION
+   
+# Check if the target date in 30 days away and send a notification
+FUNCTION SendNotification():
+    IF current_date is 30 days from the target_date:
+        IF amount_saved < target_amount:
+            Compose and send notification to user: "You are 30 days from the deadline and haven't reached your savings goal!"
+        ELSE IF amount_saved >= target_amount:
+            Compose and send notification to user: "Congratulations, you have achieved your savings goal!"
+        END IF
+    END IF
+END FUNCTION
+
+FUNCTION main_workflow():
+    # User creates a new savings goal
+    user_id = int(input("What is your user ID?"))
+    target_amount = input("How much money do you want to save?)
+    target_date = input("By what date do you want to have saved this amount?")
+    savings_goal = SavingsGoal()
+    savings_goal.NewSavingsGoal(user_id, target_amount, target_date)
+
+    # User updates savings progress
+    amount_saved_new = input(How much have you saved?")
+    savings_goal.SavingsProgress(amount_saved_new)
+
+    # Check goal status and sends notification
+    status = savings_goal.SavingsStatus()
+    if status == "In Progress":
+        savings_goal.SendNotification()
+
+    # Notify user if goal is achieved or missed
+    IF savings_goal.SavingsStatus() == "Goal Met":
+        Print (f"You have successfully achieved your savings goal of {target_amount}!")
+    ELSE IF savings_goal.get_savings_status() == "Missed":
+        Print (f"Sorry, you did not meet your savings goal of {target_amount} by {target_date}.")
+    END IF
+END FUNCTION
