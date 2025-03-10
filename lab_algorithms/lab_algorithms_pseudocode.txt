@@ -67,10 +67,10 @@ FUNCTION main_workflow():
     if status == "In Progress":
         savings_goal.SendNotification()
 
-    # Notify user if goal is achieved or missed
+    # Notify user if goal is met or not
     IF savings_goal.SavingsStatus() == "Goal Met":
         Print (f"You have successfully achieved your savings goal of {target_amount}!")
-    ELSE IF savings_goal.get_savings_status() == "Missed":
+    ELSE IF savings_goal.get_savings_status() == "Goal Not Met":
         Print (f"Sorry, you did not meet your savings goal of {target_amount} by {target_date}.")
     END IF
 END FUNCTION
