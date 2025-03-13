@@ -1,71 +1,56 @@
-# Main functionalities and inputs/outputs of the PizzaCost system:
-# 1. Prompt the user for inputs:
-#    • Pizza size (small or large)
-#    • Number of toppings
-#    • Delivery distance in miles
-# 2. Calculate the base cost of the pizza using conditional statements.
-# 3. Calculate the cost of toppings.
-# 4. Calculate the delivery fee.
-# 5. Sum up the total cost.
-# 6. Display the result using an f-string.
-
-'''
-# Data Structure for PizzaCost system:
-    user_phone = Integer
-    pizza_quantity = Integer
-    pizza_size = String
-    toppings_quantity = Integer
-    delivery_distance = Float
-    base_cost = Float
-    toppings_cost = Float
-    delivery_cost = Float
-    total_cost = Float
-'''
+# 1. User inputs for User's Pizza Order
+user_phone = int(input("What is the phone number for this pizza order? "))
+pizza_quantity = int(input("How many pizzas would you like to order? "))
+pizza_size = input("What size pizza do you want to order (small/large)? ").lower()
+toppings_quantity = int(input("How many toppings do you want on the pizza(s)? "))
+delivery_distance = int(input("How many miles away is the destination of this order? "))
 
 # Pizza Shop Inputs
-    small_pizza = 8
-    large_pizza = 12
-    toppings = 1
-    delivery_fee_base = 2
-    delivery_fee_extra = 1 * ({delivery_distance} - 5)
-
-# 1. User inputs for User's Pizza Order
-FUNCTION PizzaOrder
-    user_phone = int(input("What is the phone number for this pizza order?"))
-    pizza_quantity = int(input("How many pizzas would you like to order?"))
-    pizza_size = input("What size pizza do you want to order (small/large)?")
-    toppings_quantity = int(input("How many toppings do you want on the pizza(s)?)")
-    delivery_distance = int(input("How many miles away is the destination of this order?)")
-END FUNCTION
+small_pizza = 8
+large_pizza = 12
+toppings = 1
+delivery_fee_base = 2
+# Handle delivery fee extra (no extra fee if distance <= 5 miles)
+delivery_fee_extra = 0 if delivery_distance <= 5 else 1 * (delivery_distance - 5)
 
 # 2. Calculate base cost of the order
-FUNCTION BaseCost
-    IF pizza_size == small:
+def BaseCost(pizza_size, pizza_quantity):
+    base_cost = 0
+    if pizza_size == "small":
         base_cost = pizza_quantity * small_pizza
-    ELSE: 
+    else: 
         base_cost = pizza_quantity * large_pizza
-    END IF
-END FUNCTION
+    return base_cost
 
 # 3. Calculate the cost of additional toppings
-FUNCTION ToppingsCost
-    IF toppings_quantity == 1:
+def ToppingsCost(toppings, toppings_quantity):
+    toppings_cost = 0
+    if toppings_quantity <= 1:  
         toppings_cost = 0
-    ELSE:
-        toppings_cost = toppings * toppings_quantity - 1
-    END IF
-END FUNCTION
+    else:
+        toppings_cost = toppings * (toppings_quantity - 1)
+    return toppings_cost
 
 # 4. Calculate the delivery fee
-FUNCTION DeliveryCost
-    IF delivery_distance is <= 5:
-        delivery_cost = delivery_fee_base
-    ELSE:
-        delivery_cost = delivery_fee_base + delivery_fee_extra
-    END IF
-END FUNCTION
+def DeliveryCost(delivery_fee_base, delivery_fee_extra):
+    delivery_cost = delivery_fee_base + delivery_fee_extra  
+    return delivery_cost
+
+# Calculate all costs
+base_cost = BaseCost(pizza_size, pizza_quantity)
+toppings_cost = ToppingsCost(toppings, toppings_quantity)
+delivery_cost = DeliveryCost(delivery_fee_base, delivery_fee_extra)
 
 # 5. Sum up the total cost
-FUNCTION TotalCost
+def TotalCost(base_cost, toppings_cost, delivery_cost):
     total_cost = base_cost + toppings_cost + delivery_cost
-END FUNCTION
+    return total_cost
+
+# Calculate and display results
+total_cost = TotalCost(base_cost, toppings_cost, delivery_cost)
+
+# Print the results
+print(f"The base cost is ${base_cost}")
+print(f"The toppings cost is ${toppings_cost}")
+print(f"The delivery cost is ${delivery_cost}")
+print(f"The total cost is ${total_cost}")
