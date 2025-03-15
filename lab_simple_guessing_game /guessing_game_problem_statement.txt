@@ -1,0 +1,16 @@
+As a software engineer, you've been tasked with developing a simple guessing game for a mobile app. 
+
+Users will guess a secret number within a limited number of attempts. 
+This lab will guide you through implementing this game using while loops in Python. 
+
+In this lab, you will implement a while loop to control game flow, generate random numbers, handle user input, and apply conditional statements within a loop structure.
+
+For this lab, you will create a Python program that generates a random secret number between 1 and 10 (inclusive) and allows the user to guess it within five attempts. 
+Provide feedback to the user based on whether the guess is too high, too low, or correct. 
+The game should continue prompting for guesses until the user wins or exhausts their attempts.
+
+Game Requirements:
+
+Generate a random secret number between 1 and 10.
+Allow only five attempts.
+Provide feedback to the user if their guess is too high, too low, or correct."""
