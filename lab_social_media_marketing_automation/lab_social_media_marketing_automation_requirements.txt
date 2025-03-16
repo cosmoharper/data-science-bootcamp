@@ -1,0 +1,10 @@
+"""
+You are a junior software engineer who has recently joined a thriving social media marketing company. The company manages social media campaigns for various clients, promoting a wide range of products across multiple platforms. Your team lead has assigned you an exciting project: to create a Python program that automates the process of generating social media posts for different products across various platforms.
+
+This automation will significantly streamline the company's workflow, allowing the marketing team to focus on strategy and client relations while ensuring consistent and timely posts across all platforms. Your program will need to handle product information (including images and descriptions) and target different social media platforms like Facebook, Twitter, and Instagram.
+
+Your task is to write a script that uses loops to iterate through a list of products and create individual social media posts for each one. You'll need to define two key functions:
+
+print_product_info(): This function will allow users to print product information without specifying the target social media platform.
+print_post_by_platform(): This function will print the product information along with the target social media platform.
+"""

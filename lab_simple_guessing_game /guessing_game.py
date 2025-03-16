@@ -8,7 +8,7 @@ attempt_number = 0
 allowed_attempts = 5
 guess = 0
 
-while attempt_number <= allowed_attempts and guess != secret_number:
+while attempt_number < allowed_attempts and guess != secret_number:
     # Ask user for their guess
     guess = int(input("I am thinking of a number between 1 and 10. You have 5 guesses to get it right. What's your guess (1-10)? "))
     attempt_number += 1
