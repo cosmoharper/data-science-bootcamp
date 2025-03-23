@@ -19,24 +19,28 @@ def count_specific_word(text, target_word):
     for word in words:
         if word == target_word.lower():
             count += 1
+        else:
+            continue  # No action needed for non-matching words
     return count
 
-def find_most_common_word(text):
+def identify_most_common_word(text):
     """Find the most frequently occurring word in the text."""
     words = re.findall(r'\b\w+\b', text.lower())
     if not words:
         return None
-    word_counts = Counter(words)
-    most_common = word_counts.most_common(1)[0]
-    return most_common[0], most_common[1]
+    else:
+        word_counts = Counter(words)
+        most_common = word_counts.most_common(1)[0]
+        return most_common[0], most_common[1]
 
-def calculate_avg_word_length(text):
+def calculate_average_word_length(text):
     """Calculate the average word length excluding punctuation."""
     words = re.findall(r'\b\w+\b', text)
     if not words:
         return 0
-    total_length = sum(len(word) for word in words)
-    return round(total_length / len(words), 2)
+    else:
+        total_length = sum(len(word) for word in words)
+        return round(total_length / len(words), 2)
 
 def count_paragraphs(text):
     """Count number of paragraphs based on empty lines."""
@@ -66,6 +70,8 @@ def analyze_article(file_path):
     if text is None:
         print(f"Error: Could not read file {file_path}")
         return
+    else:
+        print("File successfully loaded for analysis")
 
     # Using while loop for user input
     analyzing = True
@@ -76,18 +82,18 @@ def analyze_article(file_path):
             analyzing = False
             print("Analysis complete. Goodbye!")
             continue
-        
-        # Perform analyses
-        word_count = count_specific_word(text, target_word)
-        common_result = find_most_common_word(text)
-        common_word, common_count = common_result if common_result else ("N/A", 0)
-        avg_length = calculate_avg_word_length(text)
-        paragraph_count = count_paragraphs(text)
-        sentence_count = count_sentences(text)
+        else:
+            # Perform analyses
+            word_count = count_specific_word(text, target_word)
+            common_result = identify_most_common_word(text)
+            common_word, common_count = common_result if common_result else ("N/A", 0)
+            avg_length = calculate_average_word_length(text)
+            paragraph_count = count_paragraphs(text)
+            sentence_count = count_sentences(text)
 
-        # Display results
-        display_results(target_word, word_count, common_word, common_count,
-                       avg_length, paragraph_count, sentence_count)
+            # Display results
+            display_results(target_word, word_count, common_word, common_count,
+                          avg_length, paragraph_count, sentence_count)
 
 def main():
     file_path = "news_article.txt"
@@ -96,9 +102,9 @@ def main():
     if not Path(file_path).exists():
         print("Please ensure the news article text file is in the correct directory.")
         return
-
-    print("Welcome to News Article Analyzer")
-    analyze_article(file_path)
+    else:
+        print("Welcome to News Article Analyzer")
+        analyze_article(file_path)
 
 if __name__ == "__main__":
     main()
